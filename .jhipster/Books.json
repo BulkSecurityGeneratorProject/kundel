@@ -1,0 +1,38 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idBook",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "isbn",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url_s",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url_m",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "url_l",
+            "fieldType": "String"
+        }
+    ],
+    "dto": "mapstruct",
+    "service": "no",
+    "entityTableName": "books",
+    "pagination": "pager"
+}

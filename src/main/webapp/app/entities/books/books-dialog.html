@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myBooksLabel">Create or edit a Books</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.books.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.books.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_idBook">Id Book</label>
+            <input type="number" class="form-control" name="idBook" id="field_idBook"
+                    ng-model="vm.books.idBook"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_title">Title</label>
+            <input type="text" class="form-control" name="title" id="field_title"
+                    ng-model="vm.books.title"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_isbn">Isbn</label>
+            <input type="text" class="form-control" name="isbn" id="field_isbn"
+                    ng-model="vm.books.isbn"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_year">Year</label>
+            <input type="text" class="form-control" name="year" id="field_year"
+                    ng-model="vm.books.year"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="kundelApp.books.url_s" for="field_url_s">Url S</label>
+            <input type="text" class="form-control" name="url_s" id="field_url_s"
+                    ng-model="vm.books.url_s"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="kundelApp.books.url_m" for="field_url_m">Url M</label>
+            <input type="text" class="form-control" name="url_m" id="field_url_m"
+                    ng-model="vm.books.url_m"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="kundelApp.books.url_l" for="field_url_l">Url L</label>
+            <input type="text" class="form-control" name="url_l" id="field_url_l"
+                    ng-model="vm.books.url_l"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>
