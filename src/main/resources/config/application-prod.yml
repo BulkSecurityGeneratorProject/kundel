@@ -19,8 +19,9 @@ spring:
             enabled: false
     data:
         mongodb:
-            uri: mongodb://localhost:27017
-            database: Kundel
+            #uri: mongodb://localhost:27017
+            uri: mongodb://ai:ai@ds153677.mlab.com:53677/kundel
+            database: kundel
     mail:
         host: localhost
         port: 25
