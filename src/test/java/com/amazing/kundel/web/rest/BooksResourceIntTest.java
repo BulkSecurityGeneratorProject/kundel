@@ -38,9 +38,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = KundelApp.class)
 public class BooksResourceIntTest {
 
-    private static final Integer DEFAULT_ID_BOOK = 1;
-    private static final Integer UPDATED_ID_BOOK = 2;
-
     private static final String DEFAULT_TITLE = "AAAAA";
     private static final String UPDATED_TITLE = "BBBBB";
 
@@ -58,6 +55,12 @@ public class BooksResourceIntTest {
 
     private static final String DEFAULT_URL_L = "AAAAA";
     private static final String UPDATED_URL_L = "BBBBB";
+
+    private static final Integer DEFAULT_AUTHOR = 1;
+    private static final Integer UPDATED_AUTHOR = 2;
+
+    private static final Integer DEFAULT_PUBLISHER = 1;
+    private static final Integer UPDATED_PUBLISHER = 2;
 
     @Inject
     private BooksRepository booksRepository;
@@ -94,13 +97,14 @@ public class BooksResourceIntTest {
      */
     public static Books createEntity() {
         Books books = new Books()
-                .idBook(DEFAULT_ID_BOOK)
                 .title(DEFAULT_TITLE)
                 .isbn(DEFAULT_ISBN)
                 .year(DEFAULT_YEAR)
                 .url_s(DEFAULT_URL_S)
                 .url_m(DEFAULT_URL_M)
-                .url_l(DEFAULT_URL_L);
+                .url_l(DEFAULT_URL_L)
+                .author(DEFAULT_AUTHOR)
+                .publisher(DEFAULT_PUBLISHER);
         return books;
     }
 
@@ -126,13 +130,14 @@ public class BooksResourceIntTest {
         List<Books> books = booksRepository.findAll();
         assertThat(books).hasSize(databaseSizeBeforeCreate + 1);
         Books testBooks = books.get(books.size() - 1);
-        assertThat(testBooks.getIdBook()).isEqualTo(DEFAULT_ID_BOOK);
         assertThat(testBooks.getTitle()).isEqualTo(DEFAULT_TITLE);
         assertThat(testBooks.getIsbn()).isEqualTo(DEFAULT_ISBN);
         assertThat(testBooks.getYear()).isEqualTo(DEFAULT_YEAR);
         assertThat(testBooks.getUrl_s()).isEqualTo(DEFAULT_URL_S);
         assertThat(testBooks.getUrl_m()).isEqualTo(DEFAULT_URL_M);
         assertThat(testBooks.getUrl_l()).isEqualTo(DEFAULT_URL_L);
+        assertThat(testBooks.getAuthor()).isEqualTo(DEFAULT_AUTHOR);
+        assertThat(testBooks.getPublisher()).isEqualTo(DEFAULT_PUBLISHER);
     }
 
     @Test
@@ -145,13 +150,14 @@ public class BooksResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(books.getId())))
-                .andExpect(jsonPath("$.[*].idBook").value(hasItem(DEFAULT_ID_BOOK)))
                 .andExpect(jsonPath("$.[*].title").value(hasItem(DEFAULT_TITLE.toString())))
                 .andExpect(jsonPath("$.[*].isbn").value(hasItem(DEFAULT_ISBN.toString())))
                 .andExpect(jsonPath("$.[*].year").value(hasItem(DEFAULT_YEAR.toString())))
                 .andExpect(jsonPath("$.[*].url_s").value(hasItem(DEFAULT_URL_S.toString())))
                 .andExpect(jsonPath("$.[*].url_m").value(hasItem(DEFAULT_URL_M.toString())))
-                .andExpect(jsonPath("$.[*].url_l").value(hasItem(DEFAULT_URL_L.toString())));
+                .andExpect(jsonPath("$.[*].url_l").value(hasItem(DEFAULT_URL_L.toString())))
+                .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR)))
+                .andExpect(jsonPath("$.[*].publisher").value(hasItem(DEFAULT_PUBLISHER)));
     }
 
     @Test
@@ -164,13 +170,14 @@ public class BooksResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(books.getId()))
-            .andExpect(jsonPath("$.idBook").value(DEFAULT_ID_BOOK))
             .andExpect(jsonPath("$.title").value(DEFAULT_TITLE.toString()))
             .andExpect(jsonPath("$.isbn").value(DEFAULT_ISBN.toString()))
             .andExpect(jsonPath("$.year").value(DEFAULT_YEAR.toString()))
             .andExpect(jsonPath("$.url_s").value(DEFAULT_URL_S.toString()))
             .andExpect(jsonPath("$.url_m").value(DEFAULT_URL_M.toString()))
-            .andExpect(jsonPath("$.url_l").value(DEFAULT_URL_L.toString()));
+            .andExpect(jsonPath("$.url_l").value(DEFAULT_URL_L.toString()))
+            .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR))
+            .andExpect(jsonPath("$.publisher").value(DEFAULT_PUBLISHER));
     }
 
     @Test
@@ -189,13 +196,14 @@ public class BooksResourceIntTest {
         // Update the books
         Books updatedBooks = booksRepository.findOne(books.getId());
         updatedBooks
-                .idBook(UPDATED_ID_BOOK)
                 .title(UPDATED_TITLE)
                 .isbn(UPDATED_ISBN)
                 .year(UPDATED_YEAR)
                 .url_s(UPDATED_URL_S)
                 .url_m(UPDATED_URL_M)
-                .url_l(UPDATED_URL_L);
+                .url_l(UPDATED_URL_L)
+                .author(UPDATED_AUTHOR)
+                .publisher(UPDATED_PUBLISHER);
         BooksDTO booksDTO = booksMapper.booksToBooksDTO(updatedBooks);
 
         restBooksMockMvc.perform(put("/api/books")
@@ -207,13 +215,14 @@ public class BooksResourceIntTest {
         List<Books> books = booksRepository.findAll();
         assertThat(books).hasSize(databaseSizeBeforeUpdate);
         Books testBooks = books.get(books.size() - 1);
-        assertThat(testBooks.getIdBook()).isEqualTo(UPDATED_ID_BOOK);
         assertThat(testBooks.getTitle()).isEqualTo(UPDATED_TITLE);
         assertThat(testBooks.getIsbn()).isEqualTo(UPDATED_ISBN);
         assertThat(testBooks.getYear()).isEqualTo(UPDATED_YEAR);
         assertThat(testBooks.getUrl_s()).isEqualTo(UPDATED_URL_S);
         assertThat(testBooks.getUrl_m()).isEqualTo(UPDATED_URL_M);
         assertThat(testBooks.getUrl_l()).isEqualTo(UPDATED_URL_L);
+        assertThat(testBooks.getAuthor()).isEqualTo(UPDATED_AUTHOR);
+        assertThat(testBooks.getPublisher()).isEqualTo(UPDATED_PUBLISHER);
     }
 
     @Test

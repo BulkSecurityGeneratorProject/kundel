@@ -19,9 +19,6 @@ public class Books implements Serializable {
     @Id
     private String id;
 
-    @Field("id_book")
-    private Integer idBook;
-
     @Field("title")
     private String title;
 
@@ -40,25 +37,18 @@ public class Books implements Serializable {
     @Field("url_l")
     private String url_l;
 
+    @Field("author")
+    private Integer author;
+
+    @Field("publisher")
+    private Integer publisher;
+
     public String getId() {
         return id;
     }
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Integer getIdBook() {
-        return idBook;
-    }
-
-    public Books idBook(Integer idBook) {
-        this.idBook = idBook;
-        return this;
-    }
-
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
     }
 
     public String getTitle() {
@@ -139,6 +129,32 @@ public class Books implements Serializable {
         this.url_l = url_l;
     }
 
+    public Integer getAuthor() {
+        return author;
+    }
+
+    public Books author(Integer author) {
+        this.author = author;
+        return this;
+    }
+
+    public void setAuthor(Integer author) {
+        this.author = author;
+    }
+
+    public Integer getPublisher() {
+        return publisher;
+    }
+
+    public Books publisher(Integer publisher) {
+        this.publisher = publisher;
+        return this;
+    }
+
+    public void setPublisher(Integer publisher) {
+        this.publisher = publisher;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -163,13 +179,14 @@ public class Books implements Serializable {
     public String toString() {
         return "Books{" +
             "id=" + id +
-            ", idBook='" + idBook + "'" +
             ", title='" + title + "'" +
             ", isbn='" + isbn + "'" +
             ", year='" + year + "'" +
             ", url_s='" + url_s + "'" +
             ", url_m='" + url_m + "'" +
             ", url_l='" + url_l + "'" +
+            ", author='" + author + "'" +
+            ", publisher='" + publisher + "'" +
             '}';
     }
 }

@@ -3,10 +3,6 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "idAuthor",
-            "fieldType": "Integer"
-        },
-        {
             "fieldName": "name",
             "fieldType": "String"
         }

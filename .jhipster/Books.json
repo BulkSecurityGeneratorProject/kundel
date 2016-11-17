@@ -3,10 +3,6 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "idBook",
-            "fieldType": "Integer"
-        },
-        {
             "fieldName": "title",
             "fieldType": "String"
         },
@@ -29,6 +25,14 @@
         {
             "fieldName": "url_l",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "author",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "publisher",
+            "fieldType": "Integer"
         }
     ],
     "dto": "mapstruct",

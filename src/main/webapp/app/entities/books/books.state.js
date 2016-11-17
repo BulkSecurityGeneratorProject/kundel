@@ -115,13 +115,14 @@
                     resolve: {
                         entity: function () {
                             return {
-                                idBook: null,
                                 title: null,
                                 isbn: null,
                                 year: null,
                                 url_s: null,
                                 url_m: null,
                                 url_l: null,
+                                author: null,
+                                publisher: null,
                                 id: null
                             };
                         }

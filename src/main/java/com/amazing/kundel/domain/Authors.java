@@ -19,9 +19,6 @@ public class Authors implements Serializable {
     @Id
     private String id;
 
-    @Field("id_author")
-    private Integer idAuthor;
-
     @Field("name")
     private String name;
 
@@ -31,19 +28,6 @@ public class Authors implements Serializable {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public Integer getIdAuthor() {
-        return idAuthor;
-    }
-
-    public Authors idAuthor(Integer idAuthor) {
-        this.idAuthor = idAuthor;
-        return this;
-    }
-
-    public void setIdAuthor(Integer idAuthor) {
-        this.idAuthor = idAuthor;
     }
 
     public String getName() {
@@ -83,7 +67,6 @@ public class Authors implements Serializable {
     public String toString() {
         return "Authors{" +
             "id=" + id +
-            ", idAuthor='" + idAuthor + "'" +
             ", name='" + name + "'" +
             '}';
     }

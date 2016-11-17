@@ -36,9 +36,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = KundelApp.class)
 public class AuthorsResourceIntTest {
 
-    private static final Integer DEFAULT_ID_AUTHOR = 1;
-    private static final Integer UPDATED_ID_AUTHOR = 2;
-
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
 
@@ -73,7 +70,6 @@ public class AuthorsResourceIntTest {
      */
     public static Authors createEntity() {
         Authors authors = new Authors()
-                .idAuthor(DEFAULT_ID_AUTHOR)
                 .name(DEFAULT_NAME);
         return authors;
     }
@@ -99,7 +95,6 @@ public class AuthorsResourceIntTest {
         List<Authors> authors = authorsRepository.findAll();
         assertThat(authors).hasSize(databaseSizeBeforeCreate + 1);
         Authors testAuthors = authors.get(authors.size() - 1);
-        assertThat(testAuthors.getIdAuthor()).isEqualTo(DEFAULT_ID_AUTHOR);
         assertThat(testAuthors.getName()).isEqualTo(DEFAULT_NAME);
     }
 
@@ -113,7 +108,6 @@ public class AuthorsResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(authors.getId())))
-                .andExpect(jsonPath("$.[*].idAuthor").value(hasItem(DEFAULT_ID_AUTHOR)))
                 .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
 
@@ -127,7 +121,6 @@ public class AuthorsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(authors.getId()))
-            .andExpect(jsonPath("$.idAuthor").value(DEFAULT_ID_AUTHOR))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
@@ -147,7 +140,6 @@ public class AuthorsResourceIntTest {
         // Update the authors
         Authors updatedAuthors = authorsRepository.findOne(authors.getId());
         updatedAuthors
-                .idAuthor(UPDATED_ID_AUTHOR)
                 .name(UPDATED_NAME);
 
         restAuthorsMockMvc.perform(put("/api/authors")
@@ -159,7 +151,6 @@ public class AuthorsResourceIntTest {
         List<Authors> authors = authorsRepository.findAll();
         assertThat(authors).hasSize(databaseSizeBeforeUpdate);
         Authors testAuthors = authors.get(authors.size() - 1);
-        assertThat(testAuthors.getIdAuthor()).isEqualTo(UPDATED_ID_AUTHOR);
         assertThat(testAuthors.getName()).isEqualTo(UPDATED_NAME);
     }
 
