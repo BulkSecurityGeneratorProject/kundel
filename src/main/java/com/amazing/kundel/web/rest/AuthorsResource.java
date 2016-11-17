@@ -30,7 +30,7 @@ import java.util.Optional;
 public class AuthorsResource {
 
     private final Logger log = LoggerFactory.getLogger(AuthorsResource.class);
-        
+
     @Inject
     private AuthorsRepository authorsRepository;
 
@@ -47,12 +47,12 @@ public class AuthorsResource {
     @Timed
     public ResponseEntity<Authors> createAuthors(@RequestBody Authors authors) throws URISyntaxException {
         log.debug("REST request to save Authors : {}", authors);
-        if (authors.getId() != null) {
+        if (authors.getIdAuthor() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("authors", "idexists", "A new authors cannot already have an ID")).body(null);
         }
         Authors result = authorsRepository.save(authors);
-        return ResponseEntity.created(new URI("/api/authors/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert("authors", result.getId().toString()))
+        return ResponseEntity.created(new URI("/api/authors/" + result.getIdAuthor()))
+            .headers(HeaderUtil.createEntityCreationAlert("authors", result.getIdAuthor().toString()))
             .body(result);
     }
 
@@ -105,13 +105,13 @@ public class AuthorsResource {
      * @param id the id of the authors to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the authors, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/authors/{id}",
+    @RequestMapping(value = "/authors/{id_author}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<Authors> getAuthors(@PathVariable String id) {
-        log.debug("REST request to get Authors : {}", id);
-        Authors authors = authorsRepository.findOne(id);
+    public ResponseEntity<Authors> getAuthors(@PathVariable int id_author) {
+        log.debug("REST request to get Authors : {}", id_author);
+        Authors authors = authorsRepository.findByFuckinId(id_author);
         return Optional.ofNullable(authors)
             .map(result -> new ResponseEntity<>(
                 result,

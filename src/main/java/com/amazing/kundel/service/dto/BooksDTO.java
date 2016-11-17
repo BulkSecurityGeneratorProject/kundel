@@ -27,6 +27,8 @@ public class BooksDTO implements Serializable {
 
     private Integer publisher;
 
+    private Integer idBook;
+
 
     public String getId() {
         return id;
@@ -91,6 +93,13 @@ public class BooksDTO implements Serializable {
     public void setPublisher(Integer publisher) {
         this.publisher = publisher;
     }
+    public Integer getIdBook() {
+        return idBook;
+    }
+
+    public void setIdBook(Integer idBook) {
+        this.idBook = idBook;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -125,6 +134,7 @@ public class BooksDTO implements Serializable {
             ", url_l='" + url_l + "'" +
             ", author='" + author + "'" +
             ", publisher='" + publisher + "'" +
+            ", idBook='" + idBook + "'" +
             '}';
     }
 }

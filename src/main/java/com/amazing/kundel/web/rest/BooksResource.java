@@ -34,7 +34,7 @@ import java.util.stream.Collectors;
 public class BooksResource {
 
     private final Logger log = LoggerFactory.getLogger(BooksResource.class);
-        
+
     @Inject
     private BooksRepository booksRepository;
 
@@ -116,13 +116,13 @@ public class BooksResource {
      * @param id the id of the booksDTO to retrieve
      * @return the ResponseEntity with status 200 (OK) and with body the booksDTO, or with status 404 (Not Found)
      */
-    @RequestMapping(value = "/books/{id}",
+    @RequestMapping(value = "/books/{id_book}",
         method = RequestMethod.GET,
         produces = MediaType.APPLICATION_JSON_VALUE)
     @Timed
-    public ResponseEntity<BooksDTO> getBooks(@PathVariable String id) {
-        log.debug("REST request to get Books : {}", id);
-        Books books = booksRepository.findOne(id);
+    public ResponseEntity<BooksDTO> getBooks(@PathVariable int id_book) {
+        log.debug("REST request to get Books : {}", id_book);
+        Books books = booksRepository.findByFuckinId(id_book);
         BooksDTO booksDTO = booksMapper.booksToBooksDTO(books);
         return Optional.ofNullable(booksDTO)
             .map(result -> new ResponseEntity<>(

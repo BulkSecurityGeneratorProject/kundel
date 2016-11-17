@@ -22,6 +22,9 @@ public class Authors implements Serializable {
     @Field("name")
     private String name;
 
+    @Field("id_author")
+    private Integer idAuthor;
+
     public String getId() {
         return id;
     }
@@ -41,6 +44,19 @@ public class Authors implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Integer getIdAuthor() {
+        return idAuthor;
+    }
+
+    public Authors idAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
+        return this;
+    }
+
+    public void setIdAuthor(Integer idAuthor) {
+        this.idAuthor = idAuthor;
     }
 
     @Override
@@ -68,6 +84,7 @@ public class Authors implements Serializable {
         return "Authors{" +
             "id=" + id +
             ", name='" + name + "'" +
+            ", idAuthor='" + idAuthor + "'" +
             '}';
     }
 }

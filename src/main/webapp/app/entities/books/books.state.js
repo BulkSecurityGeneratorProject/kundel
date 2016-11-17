@@ -90,6 +90,9 @@
                     resolve: {
                         entity: ['Books', function(Books) {
                             return Books.get({id : $stateParams.id}).$promise;
+                        }],
+                        entityAuthors: ['Authors', function(Authors) {
+                            return Authors.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -123,6 +126,7 @@
                                 url_l: null,
                                 author: null,
                                 publisher: null,
+                                idBook: null,
                                 id: null
                             };
                         }

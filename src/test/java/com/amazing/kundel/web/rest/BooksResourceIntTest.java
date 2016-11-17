@@ -62,6 +62,9 @@ public class BooksResourceIntTest {
     private static final Integer DEFAULT_PUBLISHER = 1;
     private static final Integer UPDATED_PUBLISHER = 2;
 
+    private static final Integer DEFAULT_ID_BOOK = 1;
+    private static final Integer UPDATED_ID_BOOK = 2;
+
     @Inject
     private BooksRepository booksRepository;
 
@@ -104,7 +107,8 @@ public class BooksResourceIntTest {
                 .url_m(DEFAULT_URL_M)
                 .url_l(DEFAULT_URL_L)
                 .author(DEFAULT_AUTHOR)
-                .publisher(DEFAULT_PUBLISHER);
+                .publisher(DEFAULT_PUBLISHER)
+                .idBook(DEFAULT_ID_BOOK);
         return books;
     }
 
@@ -138,6 +142,7 @@ public class BooksResourceIntTest {
         assertThat(testBooks.getUrl_l()).isEqualTo(DEFAULT_URL_L);
         assertThat(testBooks.getAuthor()).isEqualTo(DEFAULT_AUTHOR);
         assertThat(testBooks.getPublisher()).isEqualTo(DEFAULT_PUBLISHER);
+        assertThat(testBooks.getIdBook()).isEqualTo(DEFAULT_ID_BOOK);
     }
 
     @Test
@@ -157,7 +162,8 @@ public class BooksResourceIntTest {
                 .andExpect(jsonPath("$.[*].url_m").value(hasItem(DEFAULT_URL_M.toString())))
                 .andExpect(jsonPath("$.[*].url_l").value(hasItem(DEFAULT_URL_L.toString())))
                 .andExpect(jsonPath("$.[*].author").value(hasItem(DEFAULT_AUTHOR)))
-                .andExpect(jsonPath("$.[*].publisher").value(hasItem(DEFAULT_PUBLISHER)));
+                .andExpect(jsonPath("$.[*].publisher").value(hasItem(DEFAULT_PUBLISHER)))
+                .andExpect(jsonPath("$.[*].idBook").value(hasItem(DEFAULT_ID_BOOK)));
     }
 
     @Test
@@ -177,7 +183,8 @@ public class BooksResourceIntTest {
             .andExpect(jsonPath("$.url_m").value(DEFAULT_URL_M.toString()))
             .andExpect(jsonPath("$.url_l").value(DEFAULT_URL_L.toString()))
             .andExpect(jsonPath("$.author").value(DEFAULT_AUTHOR))
-            .andExpect(jsonPath("$.publisher").value(DEFAULT_PUBLISHER));
+            .andExpect(jsonPath("$.publisher").value(DEFAULT_PUBLISHER))
+            .andExpect(jsonPath("$.idBook").value(DEFAULT_ID_BOOK));
     }
 
     @Test
@@ -203,7 +210,8 @@ public class BooksResourceIntTest {
                 .url_m(UPDATED_URL_M)
                 .url_l(UPDATED_URL_L)
                 .author(UPDATED_AUTHOR)
-                .publisher(UPDATED_PUBLISHER);
+                .publisher(UPDATED_PUBLISHER)
+                .idBook(UPDATED_ID_BOOK);
         BooksDTO booksDTO = booksMapper.booksToBooksDTO(updatedBooks);
 
         restBooksMockMvc.perform(put("/api/books")
@@ -223,6 +231,7 @@ public class BooksResourceIntTest {
         assertThat(testBooks.getUrl_l()).isEqualTo(UPDATED_URL_L);
         assertThat(testBooks.getAuthor()).isEqualTo(UPDATED_AUTHOR);
         assertThat(testBooks.getPublisher()).isEqualTo(UPDATED_PUBLISHER);
+        assertThat(testBooks.getIdBook()).isEqualTo(UPDATED_ID_BOOK);
     }
 
     @Test

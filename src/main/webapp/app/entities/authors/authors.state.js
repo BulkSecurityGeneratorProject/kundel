@@ -116,6 +116,7 @@
                         entity: function () {
                             return {
                                 name: null,
+                                idAuthor: null,
                                 id: null
                             };
                         }

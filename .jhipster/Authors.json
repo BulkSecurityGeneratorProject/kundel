@@ -5,6 +5,10 @@
         {
             "fieldName": "name",
             "fieldType": "String"
+        },
+        {
+            "fieldName": "idAuthor",
+            "fieldType": "Integer"
         }
     ],
     "dto": "no",

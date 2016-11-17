@@ -33,6 +33,10 @@
         {
             "fieldName": "publisher",
             "fieldType": "Integer"
+        },
+        {
+            "fieldName": "idBook",
+            "fieldType": "Integer"
         }
     ],
     "dto": "mapstruct",

@@ -43,6 +43,9 @@ public class Books implements Serializable {
     @Field("publisher")
     private Integer publisher;
 
+    @Field("id_book")
+    private Integer idBook;
+
     public String getId() {
         return id;
     }
@@ -155,6 +158,19 @@ public class Books implements Serializable {
         this.publisher = publisher;
     }
 
+    public Integer getIdBook() {
+        return idBook;
+    }
+
+    public Books idBook(Integer idBook) {
+        this.idBook = idBook;
+        return this;
+    }
+
+    public void setIdBook(Integer idBook) {
+        this.idBook = idBook;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -187,6 +203,7 @@ public class Books implements Serializable {
             ", url_l='" + url_l + "'" +
             ", author='" + author + "'" +
             ", publisher='" + publisher + "'" +
+            ", idBook='" + idBook + "'" +
             '}';
     }
 }

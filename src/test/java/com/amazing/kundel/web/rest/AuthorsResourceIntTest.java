@@ -39,6 +39,9 @@ public class AuthorsResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAA";
     private static final String UPDATED_NAME = "BBBBB";
 
+    private static final Integer DEFAULT_ID_AUTHOR = 1;
+    private static final Integer UPDATED_ID_AUTHOR = 2;
+
     @Inject
     private AuthorsRepository authorsRepository;
 
@@ -70,7 +73,8 @@ public class AuthorsResourceIntTest {
      */
     public static Authors createEntity() {
         Authors authors = new Authors()
-                .name(DEFAULT_NAME);
+                .name(DEFAULT_NAME)
+                .idAuthor(DEFAULT_ID_AUTHOR);
         return authors;
     }
 
@@ -96,6 +100,7 @@ public class AuthorsResourceIntTest {
         assertThat(authors).hasSize(databaseSizeBeforeCreate + 1);
         Authors testAuthors = authors.get(authors.size() - 1);
         assertThat(testAuthors.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testAuthors.getIdAuthor()).isEqualTo(DEFAULT_ID_AUTHOR);
     }
 
     @Test
@@ -108,7 +113,8 @@ public class AuthorsResourceIntTest {
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
                 .andExpect(jsonPath("$.[*].id").value(hasItem(authors.getId())))
-                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
+                .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+                .andExpect(jsonPath("$.[*].idAuthor").value(hasItem(DEFAULT_ID_AUTHOR)));
     }
 
     @Test
@@ -121,7 +127,8 @@ public class AuthorsResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(authors.getId()))
-            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.idAuthor").value(DEFAULT_ID_AUTHOR));
     }
 
     @Test
@@ -140,7 +147,8 @@ public class AuthorsResourceIntTest {
         // Update the authors
         Authors updatedAuthors = authorsRepository.findOne(authors.getId());
         updatedAuthors
-                .name(UPDATED_NAME);
+                .name(UPDATED_NAME)
+                .idAuthor(UPDATED_ID_AUTHOR);
 
         restAuthorsMockMvc.perform(put("/api/authors")
                 .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -152,6 +160,7 @@ public class AuthorsResourceIntTest {
         assertThat(authors).hasSize(databaseSizeBeforeUpdate);
         Authors testAuthors = authors.get(authors.size() - 1);
         assertThat(testAuthors.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testAuthors.getIdAuthor()).isEqualTo(UPDATED_ID_AUTHOR);
     }
 
     @Test
