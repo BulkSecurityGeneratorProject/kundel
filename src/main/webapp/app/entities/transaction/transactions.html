@@ -1,13 +1,13 @@
 <div>
-    <h2>Books</h2>
+    <h2>Transactions</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="book.new" has-authority="ROLE_ADMIN">
+                <button class="btn btn-primary" ui-sref="transaction.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Book
+                        Create new Transaction
                     </span>
                 </button>
             </div>
@@ -18,42 +18,40 @@
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="url_s"><span data-translate="kundelApp.book.url_s">Cover</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="author"><span>Author</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="year"><span>Year of publication</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="publisher"><span>Publisher</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="isbn"><span>Isbn</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="idBook"><span>Id Book</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="idUser"><span>Id User</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dateStart"><span>Date Start</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="dateEnd"><span>Date End</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="price"><span>Price</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="book in vm.books track by book.id">
-                    <td><a ui-sref="book-detail({id:book.id})"><img src="{{book.url_s}}" /></a></td>
-                    <td><a ui-sref="book-detail({id:book.id})">{{book.title}}</a></td>
-                    <td>{{book.author}}</td>
-                    <td>{{book.year}}</td>
-                    <td>{{book.publisher}}</td>
-                    <td>{{book.isbn}}</td>
+                <tr ng-repeat="transaction in vm.transactions track by transaction.id">
+                    <td><a ui-sref="transaction-detail({id:transaction.id})">{{transaction.id}}</a></td>
+                    <td>{{transaction.idBook}}</td>
+                    <td>{{transaction.idUser}}</td>
+                        <td>{{transaction.dateStart | date:'mediumDate'}}</td>
+                        <td>{{transaction.dateEnd | date:'mediumDate'}}</td>
+                    <td>{{transaction.price}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="book-detail({id:book.id})"
+                                    ui-sref="transaction-detail({id:transaction.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="book.edit({id:book.id})"
-                                    class="btn btn-primary btn-sm"
-                                    has-authority="ROLE_ADMIN">
+                                    ui-sref="transaction.edit({id:transaction.id})"
+                                    class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="book.delete({id:book.id})"
-                                    class="btn btn-danger btn-sm"
-                                    has-authority="ROLE_ADMIN">
+                                    ui-sref="transaction.delete({id:transaction.id})"
+                                    class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>

@@ -1,0 +1,30 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "idBook",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "idUser",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "dateStart",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "dateEnd",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "price",
+            "fieldType": "Float"
+        }
+    ],
+    "dto": "mapstruct",
+    "service": "no",
+    "entityTableName": "transaction",
+    "pagination": "pager"
+}

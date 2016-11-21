@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span>Transaction</span> {{vm.transaction.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span>Id Book</span></dt>
+        <dd>
+            <span>{{vm.transaction.idBook}}</span>
+        </dd>
+        <dt><span>Id User</span></dt>
+        <dd>
+            <span>{{vm.transaction.idUser}}</span>
+        </dd>
+        <dt><span>Date Start</span></dt>
+        <dd>
+            <span>{{vm.transaction.dateStart | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Date End</span></dt>
+        <dd>
+            <span>{{vm.transaction.dateEnd | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span>Price</span></dt>
+        <dd>
+            <span>{{vm.transaction.price}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
+    </button>
+
+    <button type="button" ui-sref="transaction-detail.edit({id:vm.transaction.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-xs hidden-sm"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,64 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTransactionLabel">Create or edit a Transaction</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.transaction.id">
+            <label for="id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.transaction.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_idBook">Id Book</label>
+            <input type="text" class="form-control" name="idBook" id="field_idBook"
+                    ng-model="vm.transaction.idBook"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_idUser">Id User</label>
+            <input type="text" class="form-control" name="idUser" id="field_idUser"
+                    ng-model="vm.transaction.idUser"
+                     />
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_dateStart">Date Start</label>
+                <div class="input-group">
+                    <input id="field_dateStart" type="text" class="form-control" name="dateStart" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transaction.dateStart" is-open="vm.datePickerOpenStatus.dateStart"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateStart')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_dateEnd">Date End</label>
+                <div class="input-group">
+                    <input id="field_dateEnd" type="text" class="form-control" name="dateEnd" uib-datepicker-popup="{{dateformat}}" ng-model="vm.transaction.dateEnd" is-open="vm.datePickerOpenStatus.dateEnd"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" for="field_price">Price</label>
+            <input type="number" class="form-control" name="price" id="field_price"
+                    ng-model="vm.transaction.price"
+                     />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Save</span>
+        </button>
+    </div>
+</form>

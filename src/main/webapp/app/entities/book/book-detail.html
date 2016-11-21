@@ -1,13 +1,9 @@
 
 <div>
-    <h2><span>Book</span> {{vm.book.id}}</h2>
+    <h2>{{vm.book.title}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Id Book</span></dt>
-        <dd>
-            <span>{{vm.book.idBook}}</span>
-        </dd>
         <dt><span>Isbn</span></dt>
         <dd>
             <span>{{vm.book.isbn}}</span>
@@ -20,7 +16,7 @@
         <dd>
             <span>{{vm.book.author}}</span>
         </dd>
-        <dt><span>Year</span></dt>
+        <dt><span>Year of publication</span></dt>
         <dd>
             <span>{{vm.book.year}}</span>
         </dd>
@@ -28,17 +24,9 @@
         <dd>
             <span>{{vm.book.publisher}}</span>
         </dd>
-        <dt><span data-translate="kundelApp.book.url_s">Url S</span></dt>
+        <dt><span data-translate="kundelApp.book.url_l">Cover</span></dt>
         <dd>
-            <span>{{vm.book.url_s}}</span>
-        </dd>
-        <dt><span data-translate="kundelApp.book.url_m">Url M</span></dt>
-        <dd>
-            <span>{{vm.book.url_m}}</span>
-        </dd>
-        <dt><span data-translate="kundelApp.book.url_l">Url L</span></dt>
-        <dd>
-            <span>{{vm.book.url_l}}</span>
+            <span><img src="{{vm.book.url_l}}" /></span>
         </dd>
     </dl>
 
@@ -48,7 +36,7 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
-    <button type="button" ui-sref="book-detail.edit({id:vm.book.id})" class="btn btn-primary">
+    <button type="button" ui-sref="book-detail.edit({id:vm.book.id})" class="btn btn-primary" has-authority="ROLE_ADMIN">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm"> Edit</span>
     </button>
