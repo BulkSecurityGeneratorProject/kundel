@@ -4,20 +4,22 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1>Welcome, Java Hipster!</h1>
-            <p class="lead">This is your homepage</p>
+            <h1>Witamy w sklepie Kundel!</h1>
+            <p class="lead">To jest Twoja strona główna</p>
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    You are logged in as user "{{vm.account.login}}".
+                    Jesteś zalogowany jako użytkownik "{{vm.account.login}}".
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    If you want to <a class="alert-link" href="" ng-click="vm.login()">sign in</a>, you can try the default accounts:<br/>- Administrator (login="admin" and password="admin") <br/>- User (login="user" and password="user").
+                    Jeśli chcesz się <a class="alert-link" href="" ng-click="vm.login()">zalogować</a>, możesz
+                    użyć domyślnych kont:<br/>- Administrator (login="admin" and hasło="admin") <br/>- Użytkownik
+                    (login="user" and hasło="user").
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    You don't have an account yet? <a class="alert-link" ui-sref="register">Register a new account</a>
+                    Nie posiadasz jeszcze konta? <a class="alert-link" ui-sref="register">Załóż nowe konto</a>
                 </div>
             </div>
 
