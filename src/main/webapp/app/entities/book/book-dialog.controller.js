@@ -3,14 +3,14 @@
 
     angular
         .module('kundelApp')
-        .controller('BooksDialogController', BooksDialogController);
+        .controller('BookDialogController', BookDialogController);
 
-    BooksDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Books'];
+    BookDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Book'];
 
-    function BooksDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Books) {
+    function BookDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Book) {
         var vm = this;
 
-        vm.books = entity;
+        vm.book = entity;
         vm.clear = clear;
         vm.save = save;
 
@@ -24,15 +24,15 @@
 
         function save () {
             vm.isSaving = true;
-            if (vm.books.id !== null) {
-                Books.update(vm.books, onSaveSuccess, onSaveError);
+            if (vm.book.id !== null) {
+                Book.update(vm.book, onSaveSuccess, onSaveError);
             } else {
-                Books.save(vm.books, onSaveSuccess, onSaveError);
+                Book.save(vm.book, onSaveSuccess, onSaveError);
             }
         }
 
         function onSaveSuccess (result) {
-            $scope.$emit('kundelApp:booksUpdate', result);
+            $scope.$emit('kundelApp:bookUpdate', result);
             $uibModalInstance.close(result);
             vm.isSaving = false;
         }

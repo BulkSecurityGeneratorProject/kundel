@@ -3,14 +3,14 @@
 
     angular
         .module('kundelApp')
-        .controller('AuthorsDeleteController',AuthorsDeleteController);
+        .controller('BookDeleteController',BookDeleteController);
 
-    AuthorsDeleteController.$inject = ['$uibModalInstance', 'entity', 'Authors'];
+    BookDeleteController.$inject = ['$uibModalInstance', 'entity', 'Book'];
 
-    function AuthorsDeleteController($uibModalInstance, entity, Authors) {
+    function BookDeleteController($uibModalInstance, entity, Book) {
         var vm = this;
 
-        vm.authors = entity;
+        vm.book = entity;
         vm.clear = clear;
         vm.confirmDelete = confirmDelete;
         
@@ -19,7 +19,7 @@
         }
 
         function confirmDelete (id) {
-            Authors.delete({id: id},
+            Book.delete({id: id},
                 function () {
                     $uibModalInstance.close(true);
                 });

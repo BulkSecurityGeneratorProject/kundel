@@ -2,12 +2,12 @@
     'use strict';
     angular
         .module('kundelApp')
-        .factory('Authors', Authors);
+        .factory('Book', Book);
 
-    Authors.$inject = ['$resource'];
+    Book.$inject = ['$resource'];
 
-    function Authors ($resource) {
-        var resourceUrl =  'api/authors/:id';
+    function Book ($resource) {
+        var resourceUrl =  'api/books/:id';
 
         return $resource(resourceUrl, {}, {
             'query': { method: 'GET', isArray: true},

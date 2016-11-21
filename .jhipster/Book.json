@@ -3,15 +3,27 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "title",
-            "fieldType": "String"
+            "fieldName": "idBook",
+            "fieldType": "Integer"
         },
         {
             "fieldName": "isbn",
             "fieldType": "String"
         },
         {
+            "fieldName": "title",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "author",
+            "fieldType": "String"
+        },
+        {
             "fieldName": "year",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "publisher",
             "fieldType": "String"
         },
         {
@@ -25,22 +37,10 @@
         {
             "fieldName": "url_l",
             "fieldType": "String"
-        },
-        {
-            "fieldName": "author",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "publisher",
-            "fieldType": "Integer"
-        },
-        {
-            "fieldName": "idBook",
-            "fieldType": "Integer"
         }
     ],
     "dto": "mapstruct",
-    "service": "no",
-    "entityTableName": "books",
+    "service": "serviceClass",
+    "entityTableName": "book",
     "pagination": "pager"
 }

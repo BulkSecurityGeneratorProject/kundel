@@ -4,10 +4,10 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-xs-4 no-padding-left">
-                <button class="btn btn-primary" ui-sref="books.new" >
+                <button class="btn btn-primary" ui-sref="book.new" >
                     <span class="glyphicon glyphicon-plus"></span>
                     <span >
-                        Create new Books
+                        Create new Book
                     </span>
                 </button>
             </div>
@@ -19,46 +19,46 @@
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span>ID</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="isbn"><span>Isbn</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="year"><span>Year</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="url_s"><span data-translate="kundelApp.books.url_s">Url S</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="url_m"><span data-translate="kundelApp.books.url_m">Url M</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="url_l"><span data-translate="kundelApp.books.url_l">Url L</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="author"><span>Author</span> <span class="glyphicon glyphicon-sort"></span></th>
-                    <th jh-sort-by="publisher"><span>Publisher</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="idBook"><span>Id Book</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isbn"><span>Isbn</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="author"><span>Author</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="year"><span>Year</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="publisher"><span>Publisher</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url_s"><span data-translate="kundelApp.book.url_s">Url S</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url_m"><span data-translate="kundelApp.book.url_m">Url M</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url_l"><span data-translate="kundelApp.book.url_l">Url L</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="books in vm.books track by books.id">
-                    <td><a ui-sref="books-detail({id:books.id})">{{books.id}}</a></td>
-                    <td>{{books.title}}</td>
-                    <td>{{books.isbn}}</td>
-                    <td>{{books.year}}</td>
-                    <td>{{books.url_s}}</td>
-                    <td>{{books.url_m}}</td>
-                    <td>{{books.url_l}}</td>
-                    <td>{{books.author}}</td>
-                    <td>{{books.publisher}}</td>
-                    <td>{{books.idBook}}</td>
+                <tr ng-repeat="book in vm.books track by book.id">
+                    <td><a ui-sref="book-detail({id:book.id})">{{book.id}}</a></td>
+                    <td>{{book.idBook}}</td>
+                    <td>{{book.isbn}}</td>
+                    <td>{{book.title}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.year}}</td>
+                    <td>{{book.publisher}}</td>
+                    <td>{{book.url_s}}</td>
+                    <td>{{book.url_m}}</td>
+                    <td>{{book.url_l}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"
-                                    ui-sref="books-detail({id:books.id})"
+                                    ui-sref="book-detail({id:book.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="books.edit({id:books.id})"
+                                    ui-sref="book.edit({id:book.id})"
                                     class="btn btn-primary btn-sm">
                                 <span class="glyphicon glyphicon-pencil"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"
-                                    ui-sref="books.delete({id:books.id})"
+                                    ui-sref="book.delete({id:book.id})"
                                     class="btn btn-danger btn-sm">
                                 <span class="glyphicon glyphicon-remove-circle"></span>
                                 <span class="hidden-xs hidden-sm"></span>

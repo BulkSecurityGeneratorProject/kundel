@@ -3,11 +3,11 @@
 
     angular
         .module('kundelApp')
-        .controller('AuthorsController', AuthorsController);
+        .controller('BookController', BookController);
 
-    AuthorsController.$inject = ['$scope', '$state', 'Authors', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    BookController.$inject = ['$scope', '$state', 'Book', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function AuthorsController ($scope, $state, Authors, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function BookController ($scope, $state, Book, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
         
         vm.loadPage = loadPage;
@@ -19,7 +19,7 @@
         loadAll();
 
         function loadAll () {
-            Authors.query({
+            Book.query({
                 page: pagingParams.page - 1,
                 size: vm.itemsPerPage,
                 sort: sort()
@@ -35,7 +35,7 @@
                 vm.links = ParseLinks.parse(headers('link'));
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
-                vm.authors = data;
+                vm.books = data;
                 vm.page = pagingParams.page;
             }
             function onError(error) {

@@ -5,29 +5,29 @@ import java.util.Objects;
 
 
 /**
- * A DTO for the Books entity.
+ * A DTO for the Book entity.
  */
-public class BooksDTO implements Serializable {
+public class BookDTO implements Serializable {
 
     private String id;
 
-    private String title;
+    private Integer idBook;
 
     private String isbn;
 
+    private String title;
+
+    private String author;
+
     private String year;
+
+    private String publisher;
 
     private String url_s;
 
     private String url_m;
 
     private String url_l;
-
-    private Integer author;
-
-    private Integer publisher;
-
-    private Integer idBook;
 
 
     public String getId() {
@@ -37,12 +37,12 @@ public class BooksDTO implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    public String getTitle() {
-        return title;
+    public Integer getIdBook() {
+        return idBook;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setIdBook(Integer idBook) {
+        this.idBook = idBook;
     }
     public String getIsbn() {
         return isbn;
@@ -51,12 +51,33 @@ public class BooksDTO implements Serializable {
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
     public String getYear() {
         return year;
     }
 
     public void setYear(String year) {
         this.year = year;
+    }
+    public String getPublisher() {
+        return publisher;
+    }
+
+    public void setPublisher(String publisher) {
+        this.publisher = publisher;
     }
     public String getUrl_s() {
         return url_s;
@@ -79,27 +100,6 @@ public class BooksDTO implements Serializable {
     public void setUrl_l(String url_l) {
         this.url_l = url_l;
     }
-    public Integer getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(Integer author) {
-        this.author = author;
-    }
-    public Integer getPublisher() {
-        return publisher;
-    }
-
-    public void setPublisher(Integer publisher) {
-        this.publisher = publisher;
-    }
-    public Integer getIdBook() {
-        return idBook;
-    }
-
-    public void setIdBook(Integer idBook) {
-        this.idBook = idBook;
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -110,9 +110,9 @@ public class BooksDTO implements Serializable {
             return false;
         }
 
-        BooksDTO booksDTO = (BooksDTO) o;
+        BookDTO bookDTO = (BookDTO) o;
 
-        if ( ! Objects.equals(id, booksDTO.id)) return false;
+        if ( ! Objects.equals(id, bookDTO.id)) return false;
 
         return true;
     }
@@ -124,17 +124,17 @@ public class BooksDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "BooksDTO{" +
+        return "BookDTO{" +
             "id=" + id +
-            ", title='" + title + "'" +
+            ", idBook='" + idBook + "'" +
             ", isbn='" + isbn + "'" +
+            ", title='" + title + "'" +
+            ", author='" + author + "'" +
             ", year='" + year + "'" +
+            ", publisher='" + publisher + "'" +
             ", url_s='" + url_s + "'" +
             ", url_m='" + url_m + "'" +
             ", url_l='" + url_l + "'" +
-            ", author='" + author + "'" +
-            ", publisher='" + publisher + "'" +
-            ", idBook='" + idBook + "'" +
             '}';
     }
 }
