@@ -14,11 +14,15 @@
         </div>
     </div>
     <br/>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
     <div class="table-responsive">
         <table class="jh-table table table-striped">
             <thead>
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
-                    <th jh-sort-by="url_s"><span data-translate="kundelApp.book.url_s">Cover</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="url_s"><span data-translate="kundelApp.book.url_s"></span></span></th>
                     <th jh-sort-by="title"><span>Title</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="author"><span>Author</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="year"><span>Year of publication</span> <span class="glyphicon glyphicon-sort"></span></th>
@@ -41,6 +45,12 @@
                                     ui-sref="book-detail({id:book.id})"
                                     class="btn btn-info btn-sm">
                                 <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-xs hidden-sm"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="transaction.new({idBook:book.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
                                 <span class="hidden-xs hidden-sm"></span>
                             </button>
                             <button type="submit"

@@ -35,6 +35,9 @@ public class Transaction implements Serializable {
     @Field("price")
     private Float price;
 
+    @Field("status")
+    private Boolean status;
+
     public String getId() {
         return id;
     }
@@ -108,6 +111,19 @@ public class Transaction implements Serializable {
         this.price = price;
     }
 
+    public Boolean isStatus() {
+        return status;
+    }
+
+    public Transaction status(Boolean status) {
+        this.status = status;
+        return this;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -137,6 +153,7 @@ public class Transaction implements Serializable {
             ", dateStart='" + dateStart + "'" +
             ", dateEnd='" + dateEnd + "'" +
             ", price='" + price + "'" +
+            ", status='" + status + "'" +
             '}';
     }
 }

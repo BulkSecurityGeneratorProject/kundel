@@ -22,6 +22,8 @@ public class TransactionDTO implements Serializable {
 
     private Float price;
 
+    private Boolean status;
+
 
     public String getId() {
         return id;
@@ -65,6 +67,13 @@ public class TransactionDTO implements Serializable {
     public void setPrice(Float price) {
         this.price = price;
     }
+    public Boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(Boolean status) {
+        this.status = status;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -96,6 +105,7 @@ public class TransactionDTO implements Serializable {
             ", dateStart='" + dateStart + "'" +
             ", dateEnd='" + dateEnd + "'" +
             ", price='" + price + "'" +
+            ", status='" + status + "'" +
             '}';
     }
 }

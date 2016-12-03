@@ -332,3 +332,30 @@ ui bootstrap tweaks
 
 
 /* jhipster-needle-css-add-main JHipster will add new css style */
+
+/* ==========================================================================
+my custom stuff
+========================================================================== */
+
+.cover-img {
+    float: left;
+    padding-right: 3em;
+}
+
+.cover-img-create {
+    float: left;
+    padding: 3em;
+}
+
+.content-block {
+    float: left;
+    max-width:50%;
+}
+
+.clear-block {
+    clear:both;
+}
+
+#endDateFormGroup {
+    max-width: 12em;
+}

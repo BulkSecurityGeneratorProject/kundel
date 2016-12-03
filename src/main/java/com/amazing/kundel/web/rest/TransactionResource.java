@@ -1,13 +1,10 @@
 package com.amazing.kundel.web.rest;
 
 import com.codahale.metrics.annotation.Timed;
-import com.amazing.kundel.domain.Transaction;
-
-import com.amazing.kundel.repository.TransactionRepository;
+import com.amazing.kundel.service.TransactionService;
 import com.amazing.kundel.web.rest.util.HeaderUtil;
 import com.amazing.kundel.web.rest.util.PaginationUtil;
 import com.amazing.kundel.service.dto.TransactionDTO;
-import com.amazing.kundel.service.mapper.TransactionMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -36,10 +33,7 @@ public class TransactionResource {
     private final Logger log = LoggerFactory.getLogger(TransactionResource.class);
         
     @Inject
-    private TransactionRepository transactionRepository;
-
-    @Inject
-    private TransactionMapper transactionMapper;
+    private TransactionService transactionService;
 
     /**
      * POST  /transactions : Create a new transaction.
@@ -57,9 +51,7 @@ public class TransactionResource {
         if (transactionDTO.getId() != null) {
             return ResponseEntity.badRequest().headers(HeaderUtil.createFailureAlert("transaction", "idexists", "A new transaction cannot already have an ID")).body(null);
         }
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
-        transaction = transactionRepository.save(transaction);
-        TransactionDTO result = transactionMapper.transactionToTransactionDTO(transaction);
+        TransactionDTO result = transactionService.save(transactionDTO);
         return ResponseEntity.created(new URI("/api/transactions/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert("transaction", result.getId().toString()))
             .body(result);
@@ -83,9 +75,7 @@ public class TransactionResource {
         if (transactionDTO.getId() == null) {
             return createTransaction(transactionDTO);
         }
-        Transaction transaction = transactionMapper.transactionDTOToTransaction(transactionDTO);
-        transaction = transactionRepository.save(transaction);
-        TransactionDTO result = transactionMapper.transactionToTransactionDTO(transaction);
+        TransactionDTO result = transactionService.save(transactionDTO);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert("transaction", transactionDTO.getId().toString()))
             .body(result);
@@ -105,9 +95,9 @@ public class TransactionResource {
     public ResponseEntity<List<TransactionDTO>> getAllTransactions(Pageable pageable)
         throws URISyntaxException {
         log.debug("REST request to get a page of Transactions");
-        Page<Transaction> page = transactionRepository.findAll(pageable);
+        Page<TransactionDTO> page = transactionService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/transactions");
-        return new ResponseEntity<>(transactionMapper.transactionsToTransactionDTOs(page.getContent()), headers, HttpStatus.OK);
+        return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
     }
 
     /**
@@ -122,8 +112,7 @@ public class TransactionResource {
     @Timed
     public ResponseEntity<TransactionDTO> getTransaction(@PathVariable String id) {
         log.debug("REST request to get Transaction : {}", id);
-        Transaction transaction = transactionRepository.findOne(id);
-        TransactionDTO transactionDTO = transactionMapper.transactionToTransactionDTO(transaction);
+        TransactionDTO transactionDTO = transactionService.findOne(id);
         return Optional.ofNullable(transactionDTO)
             .map(result -> new ResponseEntity<>(
                 result,
@@ -143,7 +132,7 @@ public class TransactionResource {
     @Timed
     public ResponseEntity<Void> deleteTransaction(@PathVariable String id) {
         log.debug("REST request to delete Transaction : {}", id);
-        transactionRepository.delete(id);
+        transactionService.delete(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert("transaction", id.toString())).build();
     }
 

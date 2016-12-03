@@ -5,11 +5,11 @@
         .module('kundelApp')
         .controller('TransactionController', TransactionController);
 
-    TransactionController.$inject = ['$scope', '$state', 'Transaction', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
+    TransactionController.$inject = ['$http', '$scope', '$state', 'Transaction', 'ParseLinks', 'AlertService', 'pagingParams', 'paginationConstants'];
 
-    function TransactionController ($scope, $state, Transaction, ParseLinks, AlertService, pagingParams, paginationConstants) {
+    function TransactionController ($http, $scope, $state, Transaction, ParseLinks, AlertService, pagingParams, paginationConstants) {
         var vm = this;
-        
+
         vm.loadPage = loadPage;
         vm.predicate = pagingParams.predicate;
         vm.reverse = pagingParams.ascending;
@@ -36,7 +36,26 @@
                 vm.totalItems = headers('X-Total-Count');
                 vm.queryCount = vm.totalItems;
                 vm.transactions = data;
+                vm.transactionsFiltered = null;
                 vm.page = pagingParams.page;
+                $http.get('api/account/').success(function(accountData) {
+                    vm.account = accountData;
+                });
+                angular.forEach(vm.transactions, function(object){
+                    object.book;
+                    object.user;
+                    $http.get('api/books/' + object.idBook).success(function(bookData) {
+                        object.book = bookData;
+                    });
+                    $http.get('api/users/' + object.idUser).success(function(userData) {
+                        object.user = userData;
+                    });
+
+                    //if(object.user.login == vm.account.login){
+                        //vm.transactions.remove(object);
+                    //}
+                });
+                //vm.transactions = vm.transactionsFiltered;
             }
             function onError(error) {
                 AlertService.error(error.data.message);

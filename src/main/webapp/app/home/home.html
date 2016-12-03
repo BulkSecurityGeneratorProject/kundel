@@ -4,40 +4,22 @@
             <span class="hipster img-responsive img-rounded"></span>
         </div>
         <div class="col-md-8">
-            <h1>Witamy w sklepie Kundel!</h1>
-            <p class="lead">To jest Twoja strona główna</p>
+            <h1>Welcome in Kundel store!</h1>
+            <p class="lead">Thousands books available, lowest prices</p>
 
             <div ng-switch="vm.isAuthenticated()">
                 <div class="alert alert-success" ng-switch-when="true">
-                    Jesteś zalogowany jako użytkownik "{{vm.account.login}}".
+                    Hello "{{vm.account.login}}". How are you feeling today?
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    Jeśli chcesz się <a class="alert-link" href="" ng-click="vm.login()">zalogować</a>, możesz
-                    użyć domyślnych kont:<br/>- Administrator (login="admin" and hasło="admin") <br/>- Użytkownik
-                    (login="user" and hasło="user").
+                    You must <a class="alert-link" href="" ng-click="vm.login()">log in</a> to browse our library.
                 </div>
 
                 <div class="alert alert-warning" ng-switch-when="false">
-                    Nie posiadasz jeszcze konta? <a class="alert-link" ui-sref="register">Załóż nowe konto</a>
+                    If you don't have an account, you can <a class="alert-link" ui-sref="register">register</a> a new one.
                 </div>
             </div>
-
-            <p>
-                If you have any question on JHipster:
-            </p>
-
-            <ul>
-                <li><a href="http://jhipster.github.io/" target="_blank">JHipster homepage</a></li>
-                <li><a href="http://stackoverflow.com/tags/jhipster/info" target="_blank">JHipster on Stack Overflow</a></li>
-                <li><a href="https://github.com/jhipster/generator-jhipster/issues?state=open" target="_blank">JHipster bug tracker</a></li>
-                <li><a href="https://gitter.im/jhipster/generator-jhipster" target="_blank">JHipster public chat room</a></li>
-                <li><a href="https://twitter.com/java_hipster" target="_blank" >follow @java_hipster on Twitter</a></li>
-            </ul>
-
-            <p>
-             <span>If you like JHipster, don't forget to give us a star on </span>&nbsp;<a href="https://github.com/jhipster/generator-jhipster" target="_blank">Github</a>!
-            </p>
         </div>
     </div>
 </div>

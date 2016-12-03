@@ -1,32 +1,27 @@
-
-<div>
+<div class="cover-img">
+    <span><img src="{{vm.book.url_l}}" /></span>
+</div>
+<div class="content-block">
     <h2>{{vm.book.title}}</h2>
     <hr>
     <jhi-alert-error></jhi-alert-error>
     <dl class="dl-horizontal jh-entity-details">
-        <dt><span>Isbn</span></dt>
-        <dd>
-            <span>{{vm.book.isbn}}</span>
-        </dd>
-        <dt><span>Title</span></dt>
-        <dd>
-            <span>{{vm.book.title}}</span>
-        </dd>
+
         <dt><span>Author</span></dt>
         <dd>
             <span>{{vm.book.author}}</span>
-        </dd>
-        <dt><span>Year of publication</span></dt>
-        <dd>
-            <span>{{vm.book.year}}</span>
         </dd>
         <dt><span>Publisher</span></dt>
         <dd>
             <span>{{vm.book.publisher}}</span>
         </dd>
-        <dt><span data-translate="kundelApp.book.url_l">Cover</span></dt>
+        <dt><span>Year of publication</span></dt>
         <dd>
-            <span><img src="{{vm.book.url_l}}" /></span>
+            <span>{{vm.book.year}}</span>
+        </dd>
+        <dt><span>Isbn</span></dt>
+        <dd>
+            <span>{{vm.book.isbn}}</span>
         </dd>
     </dl>
 
@@ -36,8 +31,15 @@
         <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span> Back</span>
     </button>
 
+    <button type="submit"
+            ui-sref="transaction.new({idBook:vm.book.id})"
+            class="btn btn-primary">
+        <span class="glyphicon glyphicon-shopping-cart"></span>&nbsp;<span> Buy</span>
+    </button>
+
     <button type="button" ui-sref="book-detail.edit({id:vm.book.id})" class="btn btn-primary" has-authority="ROLE_ADMIN">
         <span class="glyphicon glyphicon-pencil"></span>
         <span class="hidden-xs hidden-sm"> Edit</span>
     </button>
 </div>
+<div class="clear-block"></div>

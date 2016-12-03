@@ -4,6 +4,7 @@ import com.amazing.kundel.KundelApp;
 
 import com.amazing.kundel.domain.Transaction;
 import com.amazing.kundel.repository.TransactionRepository;
+import com.amazing.kundel.service.TransactionService;
 import com.amazing.kundel.service.dto.TransactionDTO;
 import com.amazing.kundel.service.mapper.TransactionMapper;
 
@@ -55,11 +56,17 @@ public class TransactionResourceIntTest {
     private static final Float DEFAULT_PRICE = 1F;
     private static final Float UPDATED_PRICE = 2F;
 
+    private static final Boolean DEFAULT_STATUS = false;
+    private static final Boolean UPDATED_STATUS = true;
+
     @Inject
     private TransactionRepository transactionRepository;
 
     @Inject
     private TransactionMapper transactionMapper;
+
+    @Inject
+    private TransactionService transactionService;
 
     @Inject
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
@@ -75,8 +82,7 @@ public class TransactionResourceIntTest {
     public void setup() {
         MockitoAnnotations.initMocks(this);
         TransactionResource transactionResource = new TransactionResource();
-        ReflectionTestUtils.setField(transactionResource, "transactionRepository", transactionRepository);
-        ReflectionTestUtils.setField(transactionResource, "transactionMapper", transactionMapper);
+        ReflectionTestUtils.setField(transactionResource, "transactionService", transactionService);
         this.restTransactionMockMvc = MockMvcBuilders.standaloneSetup(transactionResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setMessageConverters(jacksonMessageConverter).build();
@@ -94,7 +100,8 @@ public class TransactionResourceIntTest {
                 .idUser(DEFAULT_ID_USER)
                 .dateStart(DEFAULT_DATE_START)
                 .dateEnd(DEFAULT_DATE_END)
-                .price(DEFAULT_PRICE);
+                .price(DEFAULT_PRICE)
+                .status(DEFAULT_STATUS);
         return transaction;
     }
 
@@ -125,6 +132,7 @@ public class TransactionResourceIntTest {
         assertThat(testTransaction.getDateStart()).isEqualTo(DEFAULT_DATE_START);
         assertThat(testTransaction.getDateEnd()).isEqualTo(DEFAULT_DATE_END);
         assertThat(testTransaction.getPrice()).isEqualTo(DEFAULT_PRICE);
+        assertThat(testTransaction.isStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
     @Test
@@ -141,7 +149,8 @@ public class TransactionResourceIntTest {
                 .andExpect(jsonPath("$.[*].idUser").value(hasItem(DEFAULT_ID_USER.toString())))
                 .andExpect(jsonPath("$.[*].dateStart").value(hasItem(DEFAULT_DATE_START.toString())))
                 .andExpect(jsonPath("$.[*].dateEnd").value(hasItem(DEFAULT_DATE_END.toString())))
-                .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())));
+                .andExpect(jsonPath("$.[*].price").value(hasItem(DEFAULT_PRICE.doubleValue())))
+                .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.booleanValue())));
     }
 
     @Test
@@ -158,7 +167,8 @@ public class TransactionResourceIntTest {
             .andExpect(jsonPath("$.idUser").value(DEFAULT_ID_USER.toString()))
             .andExpect(jsonPath("$.dateStart").value(DEFAULT_DATE_START.toString()))
             .andExpect(jsonPath("$.dateEnd").value(DEFAULT_DATE_END.toString()))
-            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()));
+            .andExpect(jsonPath("$.price").value(DEFAULT_PRICE.doubleValue()))
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.booleanValue()));
     }
 
     @Test
@@ -181,7 +191,8 @@ public class TransactionResourceIntTest {
                 .idUser(UPDATED_ID_USER)
                 .dateStart(UPDATED_DATE_START)
                 .dateEnd(UPDATED_DATE_END)
-                .price(UPDATED_PRICE);
+                .price(UPDATED_PRICE)
+                .status(UPDATED_STATUS);
         TransactionDTO transactionDTO = transactionMapper.transactionToTransactionDTO(updatedTransaction);
 
         restTransactionMockMvc.perform(put("/api/transactions")
@@ -198,6 +209,7 @@ public class TransactionResourceIntTest {
         assertThat(testTransaction.getDateStart()).isEqualTo(UPDATED_DATE_START);
         assertThat(testTransaction.getDateEnd()).isEqualTo(UPDATED_DATE_END);
         assertThat(testTransaction.getPrice()).isEqualTo(UPDATED_PRICE);
+        assertThat(testTransaction.isStatus()).isEqualTo(UPDATED_STATUS);
     }
 
     @Test

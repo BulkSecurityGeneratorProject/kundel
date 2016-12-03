@@ -21,10 +21,14 @@
         {
             "fieldName": "price",
             "fieldType": "Float"
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Boolean"
         }
     ],
     "dto": "mapstruct",
-    "service": "no",
+    "service": "serviceClass",
     "entityTableName": "transaction",
     "pagination": "pager"
 }

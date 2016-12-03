@@ -12,7 +12,6 @@
             parent: 'app',
             url: '/',
             data: {
-                authorities: ['ROLE_USER']
             },
             views: {
                 'content@': {

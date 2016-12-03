@@ -101,7 +101,7 @@
         })
         .state('transaction.new', {
             parent: 'transaction',
-            url: '/new',
+            url: '{idBook}/new',
             data: {
                 authorities: ['ROLE_USER']
             },
@@ -115,11 +115,12 @@
                     resolve: {
                         entity: function () {
                             return {
-                                idBook: null,
+                                idBook: $stateParams.idBook,
                                 idUser: null,
-                                dateStart: null,
+                                dateStart: new Date(),
                                 dateEnd: null,
                                 price: null,
+                                status: true,
                                 id: null
                             };
                         }
