@@ -28,10 +28,16 @@ spring:
             uri: mongodb://ai:ai@ds153677.mlab.com:53677/kundel
             database: kundel
     mail:
-        host: localhost
-        port: 25
-        username:
-        password:
+            host: smtp.gmail.com
+            port: 587
+            username: kundel.amazing@gmail.com  #Replace this field with your Gmail username.
+            password: amazing-kundel           #Replace this field with your Gmail password.
+            protocol: smtp
+            tls: true
+            properties.mail.smtp:
+                auth: true
+                starttls.enable: true
+                ssl.trust: smtp.gmail.com
     messages:
         cache-seconds: 1
     thymeleaf:

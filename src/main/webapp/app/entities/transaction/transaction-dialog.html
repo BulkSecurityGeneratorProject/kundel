@@ -45,6 +45,7 @@
                     <input id="field_dateEnd" type="text" class="form-control" name="dateEnd" datepicker-options="dateOptions" uib-datepicker-popup="{{dateformat}}"
                            ng-model="vm.transaction.dateEnd" ng-change="evaluatePrice()" is-open="vm.datePickerOpenStatus.dateEnd"
                            readonly
+                           ng-required="true"
                     />
                     <span class="input-group-btn">
                         <button type="button" class="btn btn-default" ng-click="vm.openCalendar('dateEnd')"><i class="glyphicon glyphicon-calendar"></i></button>

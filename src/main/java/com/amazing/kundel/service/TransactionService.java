@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -22,7 +23,7 @@ import java.util.stream.Collectors;
 public class TransactionService {
 
     private final Logger log = LoggerFactory.getLogger(TransactionService.class);
-    
+
     @Inject
     private TransactionRepository transactionRepository;
 
@@ -45,7 +46,7 @@ public class TransactionService {
 
     /**
      *  Get all the transactions.
-     *  
+     *
      *  @param pageable the pagination information
      *  @return the list of entities
      */
@@ -76,5 +77,15 @@ public class TransactionService {
     public void delete(String id) {
         log.debug("Request to delete Transaction : {}", id);
         transactionRepository.delete(id);
+    }
+
+    /**
+     *
+     * <p>
+     * This is scheduled to get fired everyday, at midnight.
+     * </p>
+     */
+    @Scheduled(cron = "0 0 0 * * ?")
+    public void deactivateExpiredPurchases(){
     }
 }

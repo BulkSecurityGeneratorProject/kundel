@@ -35,7 +35,7 @@
         });
 
         $scope.evaluatePrice = function (){
-            vm.transaction.price = days_between(vm.transaction.dateStart, vm.transaction.dateEnd);
+            vm.transaction.price = days_between(vm.transaction.dateEnd, vm.transaction.dateStart) + 1;
         }
 
         function days_between(date1, date2) {
@@ -58,6 +58,7 @@
         var endDate = new Date();
         var startDate = new Date();
         endDate.setDate(startDate .getDate()+30);
+        startDate.setDate(startDate .getDate()+1);
 
         $scope.dateOptions = {
             minDate: startDate,
