@@ -32,7 +32,61 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="book in vm.books track by book.id">
+                <tr>
+                    <td></td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.title">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.author">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.year">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.publisher">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.isbn">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="book in vm.books track by book.id | filter: vm.search">
                     <td><a ui-sref="book-detail({id:book.id})"><img src="{{book.url_s}}" /></a></td>
                     <td><a ui-sref="book-detail({id:book.id})">{{book.title}}</a></td>
                     <td>{{book.author}}</td>

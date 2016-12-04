@@ -5,12 +5,13 @@
         .module('kundelApp')
         .controller('TransactionDialogController', TransactionDialogController);
 
-    TransactionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transaction', '$http'];
+    TransactionDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', 'entity', 'Transaction', '$http', 'previousState'];
 
-    function TransactionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Transaction, $http) {
+    function TransactionDialogController ($timeout, $scope, $stateParams, $uibModalInstance, entity, Transaction, $http, previousState) {
         var vm = this;
 
         vm.transaction = entity;
+        vm.previousState = previousState.name;
         vm.clear = clear;
         vm.datePickerOpenStatus = {};
         vm.openCalendar = openCalendar;

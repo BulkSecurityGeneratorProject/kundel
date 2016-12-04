@@ -18,7 +18,71 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="transaction in vm.transactions track by transaction.id" ng-show="transaction.user.login == vm.account.login || vm.account.authorities[1] == 'ROLE_ADMIN'">
+                <tr>
+                    <td></td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.title">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.user">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.dateStart">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.dateEnd">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.price">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td>
+                        <form>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <div class="input-group-addon"><i class="glyphicon glyphicon-search"></i></div>
+                                    <input type="text" class="form-control" ng-model="vm.search.status">
+                                </div>
+                            </div>
+                        </form>
+                    </td>
+                    <td></td>
+                </tr>
+                <tr ng-repeat="transaction in vm.transactions track by transaction.id | filter: vm.search" ng-show="transaction.user.login == vm.account.login || vm.account.authorities[1] == 'ROLE_ADMIN'">
                     <td><img src="{{transaction.book.url_s}}" /></td>
                     <td>{{transaction.book.title}}</td>
                     <td has-authority="ROLE_ADMIN">{{transaction.user.login}}</td>
