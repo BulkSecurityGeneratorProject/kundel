@@ -12,7 +12,9 @@
 
         vm.transaction = entity;
         vm.previousState = previousState.name;
+        vm.url = 'http://helion.pl/eksiazki/angularjs-pierwsze-kroki-dariusz-kalbarczyk-arkadiusz-kalbarczyk,angupk.htm';
         fetchData();
+
 
         function fetchData() {
             $http.get('api/books/' + vm.transaction.idBook).success(function(bookData) {
