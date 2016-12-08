@@ -144,9 +144,11 @@ public class UserResource {
             .body(new ManagedUserVM(userService.getUserWithAuthorities(managedUserVM.getId())));
     }
 
+
+
     /**
      * GET  /users : get all users.
-     * 
+     *
      * @param pageable the pagination information
      * @return the ResponseEntity with status 200 (OK) and with body all users
      * @throws URISyntaxException if the pagination headers couldn't be generated

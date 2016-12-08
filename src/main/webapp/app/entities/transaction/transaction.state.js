@@ -123,15 +123,8 @@
                                 status: true,
                                 id: null
                             };
-                        },
-                        previousState: ["$state", function ($state) {
-                            var currentStateData = {
-                                name: $state.current.name || 'book',
-                                params: $state.params,
-                                url: $state.href($state.current.name, $state.params)
-                            };
-                            return currentStateData;
-                        }]
+                        }
+
                     }
                 }).result.then(function() {
                     $state.go('transaction', null, { reload: 'transaction' });
